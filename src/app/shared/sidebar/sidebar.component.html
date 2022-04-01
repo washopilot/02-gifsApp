@@ -3,6 +3,8 @@
   <hr class="text-white" />
 
   <div class="list-group list-reset">
-    <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
+    <a *ngFor="let item of items" href="#" class="list-group-item list-group-item-action">{{
+      item
+    }}</a>
   </div>
 </div>
