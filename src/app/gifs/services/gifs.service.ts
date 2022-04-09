@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GifsService {
+  private apiKey: string = '0gL2YrFWGd1ZQHGRmz0Ndui9eHNQ4Ta8';
   private _historial: string[] = [];
 
   get historial() {
@@ -17,6 +18,10 @@ export class GifsService {
       this._historial = this.historial.splice(0, 10);
     }
 
-    console.log(this._historial);
+    fetch(
+      'http://api.giphy.com/v1/gifs/search?api_key=0gL2YrFWGd1ZQHGRmz0Ndui9eHNQ4Ta8&q=dbz&limit=10'
+    ).then((resp) => {
+      resp.json().then((data) => console.log(data));
+    });
   }
 }
