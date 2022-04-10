@@ -16,13 +16,18 @@ export class GifsService {
     return [...this._historial];
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (localStorage.getItem('historial')) {
+      this._historial = JSON.parse(localStorage.getItem('historial')!);
+    }
+  }
 
   buscarGifs(query: string = '') {
     query = query.trim().toLowerCase();
     if (!this.historial.includes(query)) {
       this._historial.unshift(query);
       this._historial = this.historial.splice(0, 10);
+      localStorage.setItem('historial', JSON.stringify(this._historial));
     }
 
     this.http
